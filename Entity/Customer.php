@@ -4,9 +4,9 @@ namespace LSB\CustomerBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use LSB\CustomerBundle\Repository\CustomerRepository;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use LSB\UtilityBundle\Traits\IdTrait;
-use LSB\CustomerBundle\Repository\CustomerRepository;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerRepository::class)
@@ -14,8 +14,37 @@ use LSB\CustomerBundle\Repository\CustomerRepository;
  */
 class Customer
 {
-    use IdTrait;
     use CreatedUpdatedTrait;
+    use IdTrait;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $number;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    protected $name;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $shortName;
+
+    /**
+     * @ORM\Embedded(class="Address", columnPrefix="customer_")
+     */
+    protected $address;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    protected $taxNumber;
 
     /**
      * @var Customer|null
@@ -31,33 +60,34 @@ class Customer
     protected $children;
 
     /**
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : true})
      */
     protected $isPayer = true;
 
     /**
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : false})
      */
     protected $isDelivery = false;
 
     /**
-     * @var boolean
+     * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : false})
      */
     protected $isRecipient = false;
 
     /**
-     * @ORM\Embedded(class="Address", columnPrefix="customer_")
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="LSB\CustomerBundle\Entity\CustomerGroupRelation", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $address;
+    protected $customerGroupRelations;
 
     /**
-     * @var string|null
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @var float|null
+     * @ORM\Column(type="decimal", precision=18, scale=2, nullable=true)
      */
-    protected $taxNumber;
+    protected $discount;
 
     /**
      * Customer constructor.
@@ -67,16 +97,88 @@ class Customer
         $this->generateUuid();
         $this->address = new Address();
         $this->children = new ArrayCollection();
+        $this->customerGroupRelations = new ArrayCollection();
     }
 
     public function __clone()
     {
-
         if ($this->getId()) {
             $this->id = null;
         }
 
         $this->generateUuid($force = true);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param string|null $number
+     * @return Customer
+     */
+    public function setNumber(?string $number): Customer
+    {
+        $this->number = $number;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string|null $name
+     * @return Customer
+     */
+    public function setName(?string $name): Customer
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShortName(): ?string
+    {
+        return $this->shortName;
+    }
+
+    /**
+     * @param string|null $shortName
+     * @return Customer
+     */
+    public function setShortName(?string $shortName): Customer
+    {
+        $this->shortName = $shortName;
+        return $this;
+    }
+
+    /**
+     * @return Address
+     */
+    public function getAddress(): Address
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param Address $address
+     * @return Customer
+     */
+    public function setAddress(Address $address): Customer
+    {
+        $this->address = $address;
+        return $this;
     }
 
     /**
@@ -94,6 +196,42 @@ class Customer
     public function setTaxNumber(?string $taxNumber): Customer
     {
         $this->taxNumber = $taxNumber;
+        return $this;
+    }
+
+    /**
+     * @return Customer|null
+     */
+    public function getParent(): ?Customer
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @param Customer|null $parent
+     * @return Customer
+     */
+    public function setParent(?Customer $parent): Customer
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getChildren(): ArrayCollection
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param ArrayCollection $children
+     * @return Customer
+     */
+    public function setChildren(ArrayCollection $children): Customer
+    {
+        $this->children = $children;
         return $this;
     }
 
@@ -152,38 +290,38 @@ class Customer
     }
 
     /**
-     * @return Customer|null
+     * @return ArrayCollection
      */
-    public function getParent(): ?Customer
+    public function getCustomerGroupRelations(): ArrayCollection
     {
-        return $this->parent;
+        return $this->customerGroupRelations;
     }
 
     /**
-     * @param Customer|null $parent
+     * @param ArrayCollection $customerGroupRelations
      * @return Customer
      */
-    public function setParent(?Customer $parent): Customer
+    public function setCustomerGroupRelations(ArrayCollection $customerGroupRelations): Customer
     {
-        $this->parent = $parent;
+        $this->customerGroupRelations = $customerGroupRelations;
         return $this;
     }
 
     /**
-     * @return ArrayCollection
+     * @return float|null
      */
-    public function getChildren(): ArrayCollection
+    public function getDiscount(): ?float
     {
-        return $this->children;
+        return $this->discount;
     }
 
     /**
-     * @param ArrayCollection $children
+     * @param float|null $discount
      * @return Customer
      */
-    public function setChildren(ArrayCollection $children): Customer
+    public function setDiscount(?float $discount): Customer
     {
-        $this->children = $children;
+        $this->discount = $discount;
         return $this;
     }
 
