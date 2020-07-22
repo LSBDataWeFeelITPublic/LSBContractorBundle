@@ -15,9 +15,9 @@ use LSB\UtilityBundle\Traits\IdTrait;
  */
 class Customer
 {
-    use CreatedUpdatedTrait;
     use IdTrait;
-
+    use CreatedUpdatedTrait;
+    
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
