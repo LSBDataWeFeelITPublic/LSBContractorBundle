@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace LSB\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use LSB\CustomerBundle\Repository\CustomerGroupRelationRepository;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerGroupRelationRepository::class)

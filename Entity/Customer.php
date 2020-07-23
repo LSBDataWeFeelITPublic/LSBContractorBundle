@@ -17,7 +17,7 @@ class Customer
 {
     use IdTrait;
     use CreatedUpdatedTrait;
-    
+
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -91,14 +91,22 @@ class Customer
     protected $discount;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="LSB\CustomerBundle\Entity\ContactPerson", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
+     */
+    protected $contactPersons;
+
+    /**
      * Customer constructor.
      */
     public function __construct()
     {
         $this->generateUuid();
+
         $this->address = new Address();
         $this->children = new ArrayCollection();
         $this->customerGroupRelations = new ArrayCollection();
+        $this->contactPersons = new ArrayCollection();
     }
 
     public function __clone()
@@ -323,6 +331,24 @@ class Customer
     public function setDiscount(?float $discount): Customer
     {
         $this->discount = $discount;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getContactPersons(): ArrayCollection
+    {
+        return $this->contactPersons;
+    }
+
+    /**
+     * @param ArrayCollection $contactPersons
+     * @return Customer
+     */
+    public function setContactPersons(ArrayCollection $contactPersons): Customer
+    {
+        $this->contactPersons = $contactPersons;
         return $this;
     }
 

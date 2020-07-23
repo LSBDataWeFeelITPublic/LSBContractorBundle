@@ -5,6 +5,7 @@ namespace LSB\CustomerBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use LSB\CustomerBundle\Repository\CustomerGroupRepository;
 
 /**
  * @ORM\Entity(repositoryClass=CustomerGroupRepository::class)
