@@ -1,11 +1,11 @@
 {
-  "name": "lsb/customer-bundle",
+  "name": "lsb/contractor-bundle",
   "type": "symfony-bundle",
-  "description": "Customer Bundle",
+  "description": "Contractor Bundle",
   "license": "MIT",
   "keywords": [
     "symfony",
-    "customer"
+    "contractor"
   ],
   "homepage": "https://lsb.pl",
   "authors": [
@@ -29,7 +29,7 @@
   },
   "autoload": {
     "psr-4": {
-      "LSB\\CustomerBundle\\": ""
+      "LSB\\ContractorBundle\\": ""
     },
     "exclude-from-classmap": [
       "Tests/"

@@ -1,10 +1,10 @@
 <?php
 
-namespace LSB\CustomerBundle\Repository;
+namespace LSB\ContractorBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use LSB\CustomerBundle\Entity\ContactPerson;
+use LSB\ContractorBundle\Entity\ContactPerson;
 
 
 /**

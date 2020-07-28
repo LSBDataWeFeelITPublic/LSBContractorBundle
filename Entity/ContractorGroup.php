@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace LSB\CustomerBundle\Entity;
+namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use LSB\CustomerBundle\Repository\CustomerGroupRepository;
+use LSB\ContractorBundle\Repository\ContractorGroupRepository;
 
 /**
- * @ORM\Entity(repositoryClass=CustomerGroupRepository::class)
- * @ORM\Table(name="customer_groups")
+ * @ORM\Entity(repositoryClass=ContractorGroupRepository::class)
+ * @ORM\Table(name="contractor_groups")
  */
-class CustomerGroup
+class ContractorGroup
 {
     /**
      * @var int
@@ -35,16 +35,16 @@ class CustomerGroup
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\CustomerBundle\Entity\CustomerGroupRelation", mappedBy="customerGroup", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelation", mappedBy="contractorGroup", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $customerGroupRelations;
+    protected $contractorGroupRelations;
 
     /**
-     * CustomerGroup constructor.
+     * ContractorGroup constructor.
      */
     public function __construct()
     {
-        $this->customerGroupRelations = new ArrayCollection();
+        $this->contractorGroupRelations = new ArrayCollection();
     }
 
     /**
@@ -65,9 +65,9 @@ class CustomerGroup
 
     /**
      * @param string|null $name
-     * @return CustomerGroup
+     * @return ContractorGroup
      */
-    public function setName(?string $name): CustomerGroup
+    public function setName(?string $name): ContractorGroup
     {
         $this->name = $name;
         return $this;
@@ -83,9 +83,9 @@ class CustomerGroup
 
     /**
      * @param string|null $code
-     * @return CustomerGroup
+     * @return ContractorGroup
      */
-    public function setCode(?string $code): CustomerGroup
+    public function setCode(?string $code): ContractorGroup
     {
         $this->code = $code;
         return $this;
@@ -94,18 +94,18 @@ class CustomerGroup
     /**
      * @return ArrayCollection
      */
-    public function getCustomerGroupRelations(): ArrayCollection
+    public function getContractorGroupRelations(): ArrayCollection
     {
-        return $this->customerGroupRelations;
+        return $this->contractorGroupRelations;
     }
 
     /**
-     * @param ArrayCollection $customerGroupRelations
-     * @return CustomerGroup
+     * @param ArrayCollection $contractorGroupRelations
+     * @return ContractorGroup
      */
-    public function setCustomerGroupRelations(ArrayCollection $customerGroupRelations): CustomerGroup
+    public function setContractorGroupRelations(ArrayCollection $contractorGroupRelations): ContractorGroup
     {
-        $this->customerGroupRelations = $customerGroupRelations;
+        $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;
     }
 

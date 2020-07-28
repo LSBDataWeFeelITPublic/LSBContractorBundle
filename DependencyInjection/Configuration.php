@@ -1,6 +1,6 @@
 <?php
 
-namespace LSB\CustomerBundle\DependencyInjection;
+namespace LSB\ContractorBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -17,7 +17,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('lsb_customer');
+        $treeBuilder = new TreeBuilder('lsb_contractor');
 
         return $treeBuilder;
     }

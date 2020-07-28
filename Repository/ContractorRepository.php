@@ -1,27 +1,27 @@
 <?php
 
-namespace LSB\CustomerBundle\Repository;
+namespace LSB\ContractorBundle\Repository;
 
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use LSB\CustomerBundle\Entity\Customer;
+use LSB\ContractorBundle\Entity\Contractor;
 
 /**
- * @method Customer|null find($id, $lockMode = null, $lockVersion = null)
- * @method Customer|null findOneBy(array $criteria, array $orderBy = null)
- * @method Customer[]    findAll()
- * @method Customer[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Contractor|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Contractor|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Contractor[]    findAll()
+ * @method Contractor[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CustomerRepository extends ServiceEntityRepository
+class ContractorRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Customer::class);
+        parent::__construct($registry, Contractor::class);
     }
 
     // /**
-    //  * @return Customer[] Returns an array of Customer objects
+    //  * @return Contractor[] Returns an array of Contractor objects
     //  */
     /*
     public function findByExampleField($value)
@@ -38,7 +38,7 @@ class CustomerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Customer
+    public function findOneBySomeField($value): ?Contractor
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

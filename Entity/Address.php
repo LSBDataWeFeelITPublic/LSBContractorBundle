@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace LSB\CustomerBundle\Entity;
+namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace LSB\CustomerBundle\Entity;
+namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use LSB\UtilityBundle\Traits\IdTrait;
-use LSB\CustomerBundle\Repository\ContactPersonRepository;
+use LSB\ContractorBundle\Repository\ContactPersonRepository;
 
 /**
  * @ORM\Entity(repositoryClass=ContactPersonRepository::class)
@@ -42,11 +42,11 @@ class ContactPerson
     protected $phone;
 
     /**
-     * @var Customer
-     * @ORM\ManyToOne(targetEntity="LSB\CustomerBundle\Entity\Customer", inversedBy="contactPersons")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
+     * @var Contractor
+     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\Contractor", inversedBy="contactPersons")
+     * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
-    protected $customer;
+    protected $contractor;
 
     /**
      * ContactPerson constructor.
@@ -138,20 +138,20 @@ class ContactPerson
     }
 
     /**
-     * @return Customer
+     * @return Contractor
      */
-    public function getCustomer(): Customer
+    public function getContractor(): Contractor
     {
-        return $this->customer;
+        return $this->contractor;
     }
 
     /**
-     * @param Customer $customer
+     * @param Contractor $contractor
      * @return ContactPerson
      */
-    public function setCustomer(Customer $customer): ContactPerson
+    public function setContractor(Contractor $contractor): ContactPerson
     {
-        $this->customer = $customer;
+        $this->contractor = $contractor;
         return $this;
     }
 

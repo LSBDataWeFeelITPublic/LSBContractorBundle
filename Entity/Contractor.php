@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace LSB\CustomerBundle\Entity;
+namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use LSB\CustomerBundle\Repository\CustomerRepository;
+use LSB\ContractorBundle\Repository\ContractorRepository;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use LSB\UtilityBundle\Traits\IdTrait;
 
 /**
- * @ORM\Entity(repositoryClass=CustomerRepository::class)
- * @ORM\Table(name="customers")
+ * @ORM\Entity(repositoryClass=ContractorRepository::class)
+ * @ORM\Table(name="contractors")
  */
-class Customer
+class Contractor
 {
     use IdTrait;
     use CreatedUpdatedTrait;
@@ -37,7 +37,7 @@ class Customer
     protected $shortName;
 
     /**
-     * @ORM\Embedded(class="Address", columnPrefix="customer_")
+     * @ORM\Embedded(class="Address", columnPrefix="contractor_")
      */
     protected $address;
 
@@ -48,15 +48,15 @@ class Customer
     protected $taxNumber;
 
     /**
-     * @var Customer|null
-     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="children")
+     * @var Contractor|null
+     * @ORM\ManyToOne(targetEntity="Contractor", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
     protected $parent;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Customer", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Contractor", mappedBy="parent")
      */
     protected $children;
 
@@ -80,9 +80,9 @@ class Customer
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\CustomerBundle\Entity\CustomerGroupRelation", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelation", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $customerGroupRelations;
+    protected $contractorGroupRelations;
 
     /**
      * @var float|null
@@ -92,12 +92,12 @@ class Customer
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\CustomerBundle\Entity\ContactPerson", mappedBy="customer", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContactPerson", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $contactPersons;
 
     /**
-     * Customer constructor.
+     * Contractor constructor.
      */
     public function __construct()
     {
@@ -105,7 +105,7 @@ class Customer
 
         $this->address = new Address();
         $this->children = new ArrayCollection();
-        $this->customerGroupRelations = new ArrayCollection();
+        $this->contractorGroupRelations = new ArrayCollection();
         $this->contactPersons = new ArrayCollection();
     }
 
@@ -128,9 +128,9 @@ class Customer
 
     /**
      * @param string|null $number
-     * @return Customer
+     * @return Contractor
      */
-    public function setNumber(?string $number): Customer
+    public function setNumber(?string $number): Contractor
     {
         $this->number = $number;
         return $this;
@@ -146,9 +146,9 @@ class Customer
 
     /**
      * @param string|null $name
-     * @return Customer
+     * @return Contractor
      */
-    public function setName(?string $name): Customer
+    public function setName(?string $name): Contractor
     {
         $this->name = $name;
         return $this;
@@ -164,9 +164,9 @@ class Customer
 
     /**
      * @param string|null $shortName
-     * @return Customer
+     * @return Contractor
      */
-    public function setShortName(?string $shortName): Customer
+    public function setShortName(?string $shortName): Contractor
     {
         $this->shortName = $shortName;
         return $this;
@@ -182,9 +182,9 @@ class Customer
 
     /**
      * @param Address $address
-     * @return Customer
+     * @return Contractor
      */
-    public function setAddress(Address $address): Customer
+    public function setAddress(Address $address): Contractor
     {
         $this->address = $address;
         return $this;
@@ -200,27 +200,27 @@ class Customer
 
     /**
      * @param string|null $taxNumber
-     * @return Customer
+     * @return Contractor
      */
-    public function setTaxNumber(?string $taxNumber): Customer
+    public function setTaxNumber(?string $taxNumber): Contractor
     {
         $this->taxNumber = $taxNumber;
         return $this;
     }
 
     /**
-     * @return Customer|null
+     * @return Contractor|null
      */
-    public function getParent(): ?Customer
+    public function getParent(): ?Contractor
     {
         return $this->parent;
     }
 
     /**
-     * @param Customer|null $parent
-     * @return Customer
+     * @param Contractor|null $parent
+     * @return Contractor
      */
-    public function setParent(?Customer $parent): Customer
+    public function setParent(?Contractor $parent): Contractor
     {
         $this->parent = $parent;
         return $this;
@@ -236,9 +236,9 @@ class Customer
 
     /**
      * @param ArrayCollection $children
-     * @return Customer
+     * @return Contractor
      */
-    public function setChildren(ArrayCollection $children): Customer
+    public function setChildren(ArrayCollection $children): Contractor
     {
         $this->children = $children;
         return $this;
@@ -254,9 +254,9 @@ class Customer
 
     /**
      * @param bool $isPayer
-     * @return Customer
+     * @return Contractor
      */
-    public function setIsPayer(bool $isPayer): Customer
+    public function setIsPayer(bool $isPayer): Contractor
     {
         $this->isPayer = $isPayer;
         return $this;
@@ -272,9 +272,9 @@ class Customer
 
     /**
      * @param bool $isDelivery
-     * @return Customer
+     * @return Contractor
      */
-    public function setIsDelivery(bool $isDelivery): Customer
+    public function setIsDelivery(bool $isDelivery): Contractor
     {
         $this->isDelivery = $isDelivery;
         return $this;
@@ -290,9 +290,9 @@ class Customer
 
     /**
      * @param bool $isRecipient
-     * @return Customer
+     * @return Contractor
      */
-    public function setIsRecipient(bool $isRecipient): Customer
+    public function setIsRecipient(bool $isRecipient): Contractor
     {
         $this->isRecipient = $isRecipient;
         return $this;
@@ -301,18 +301,18 @@ class Customer
     /**
      * @return ArrayCollection
      */
-    public function getCustomerGroupRelations(): ArrayCollection
+    public function getContractorGroupRelations(): ArrayCollection
     {
-        return $this->customerGroupRelations;
+        return $this->contractorGroupRelations;
     }
 
     /**
-     * @param ArrayCollection $customerGroupRelations
-     * @return Customer
+     * @param ArrayCollection $contractorGroupRelations
+     * @return Contractor
      */
-    public function setCustomerGroupRelations(ArrayCollection $customerGroupRelations): Customer
+    public function setContractorGroupRelations(ArrayCollection $contractorGroupRelations): Contractor
     {
-        $this->customerGroupRelations = $customerGroupRelations;
+        $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;
     }
 
@@ -326,9 +326,9 @@ class Customer
 
     /**
      * @param float|null $discount
-     * @return Customer
+     * @return Contractor
      */
-    public function setDiscount(?float $discount): Customer
+    public function setDiscount(?float $discount): Contractor
     {
         $this->discount = $discount;
         return $this;
@@ -344,9 +344,9 @@ class Customer
 
     /**
      * @param ArrayCollection $contactPersons
-     * @return Customer
+     * @return Contractor
      */
-    public function setContactPersons(ArrayCollection $contactPersons): Customer
+    public function setContactPersons(ArrayCollection $contactPersons): Contractor
     {
         $this->contactPersons = $contactPersons;
         return $this;

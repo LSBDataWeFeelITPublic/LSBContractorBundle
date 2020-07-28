@@ -1,10 +1,10 @@
 <?php
 
-namespace LSB\CustomerBundle;
+namespace LSB\ContractorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 
-class LSBCustomerBundle extends Bundle
+class LSBContractorBundle extends Bundle
 {
 }

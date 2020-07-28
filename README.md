@@ -1,10 +1,10 @@
-LSBCustomerBundle
+LSBContractorBundle
 ------------------
 
 ### Installation
 
 ```
-composer require lsb/customer-bundle
+composer require lsb/contractor-bundle
 ```
 
 ### Configuration
