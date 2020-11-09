@@ -4,79 +4,83 @@ declare(strict_types=1);
 namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use LSB\ContractorBundle\Repository\ContractorGroupRelationRepository;
+use Doctrine\ORM\Mapping\MappedSuperclass;
+use LSB\UtilityBundle\Traits\IdTrait;
 
 /**
- * @ORM\Entity(repositoryClass=ContractorGroupRelationRepository::class)
- * @ORM\Table(name="contractor_group_relations")
+ * Class ContractorGroupRelation
+ * @package LSB\ContractorBundle\Entity
+ *
+ * @MappedSuperclass
  */
-class ContractorGroupRelation
+class ContractorGroupRelation implements ContractorGroupRelationInterface
 {
-    /**
-     * @var int
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
+    use IdTrait;
 
     /**
-     * @var Contractor
-     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\Contractor", inversedBy="contractorGroupRelations")
+     * @var ContractorInterface
+     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $contractor;
 
     /**
-     * @var ContractorGroup
-     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorGroup", inversedBy="contractorGroupRelations")
+     * @var ContractorGroupInterface
+     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_group_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $contractorGroup;
 
     /**
-     * @return int
+     * ContractorGroupRelation constructor.
      */
-    public function getId(): int
+    public function __construct()
     {
-        return $this->id;
+        $this->generateUuid();
+    }
+
+    public function __clone()
+    {
+        if ($this->getId()) {
+            $this->id = null;
+        }
+        $this->generateUuid($force = true);
     }
 
     /**
-     * @return Contractor
+     * @return ContractorInterface
      */
-    public function getContractor(): Contractor
+    public function getContractor(): ContractorInterface
     {
         return $this->contractor;
     }
 
     /**
-     * @param Contractor $contractor
+     * @param ContractorInterface $contractor
      * @return ContractorGroupRelation
      */
-    public function setContractor(Contractor $contractor): ContractorGroupRelation
+    public function setContractor(ContractorInterface $contractor): ContractorGroupRelation
     {
         $this->contractor = $contractor;
         return $this;
     }
 
     /**
-     * @return ContractorGroup
+     * @return ContractorGroupInterface
      */
-    public function getContractorGroup(): ContractorGroup
+    public function getContractorGroup(): ContractorGroupInterface
     {
         return $this->contractorGroup;
     }
 
     /**
-     * @param ContractorGroup $contractorGroup
+     * @param ContractorGroupInterface $contractorGroup
      * @return ContractorGroupRelation
      */
-    public function setContractorGroup(ContractorGroup $contractorGroup): ContractorGroupRelation
+    public function setContractorGroup(ContractorGroupInterface $contractorGroup): ContractorGroupRelation
     {
         $this->contractorGroup = $contractorGroup;
         return $this;
     }
-
 
 }

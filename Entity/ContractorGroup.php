@@ -5,21 +5,18 @@ namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use LSB\ContractorBundle\Repository\ContractorGroupRepository;
+use Doctrine\ORM\Mapping\MappedSuperclass;
+use LSB\UtilityBundle\Traits\IdTrait;
 
 /**
- * @ORM\Entity(repositoryClass=ContractorGroupRepository::class)
- * @ORM\Table(name="contractor_groups")
+ * Class ContractorGroup
+ * @package LSB\ContractorBundle\Entity
+ *
+ * @MappedSuperclass
  */
-class ContractorGroup
+class ContractorGroup implements ContractorGroupInterface
 {
-    /**
-     * @var int
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
+    use IdTrait;
 
     /**
      * @var string|null
@@ -34,8 +31,8 @@ class ContractorGroup
     protected $code;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelation", mappedBy="contractorGroup", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @var ArrayCollection|ContractorGroupRelationInterface[]
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractorGroup", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $contractorGroupRelations;
 
@@ -44,15 +41,17 @@ class ContractorGroup
      */
     public function __construct()
     {
+        $this->generateUuid();
+
         $this->contractorGroupRelations = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function __clone()
     {
-        return $this->id;
+        if ($this->getId()) {
+            $this->id = null;
+        }
+        $this->generateUuid($force = true);
     }
 
     /**
@@ -92,18 +91,18 @@ class ContractorGroup
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|ContractorGroupRelationInterface[]
      */
-    public function getContractorGroupRelations(): ArrayCollection
+    public function getContractorGroupRelations()
     {
         return $this->contractorGroupRelations;
     }
 
     /**
-     * @param ArrayCollection $contractorGroupRelations
+     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
      * @return ContractorGroup
      */
-    public function setContractorGroupRelations(ArrayCollection $contractorGroupRelations): ContractorGroup
+    public function setContractorGroupRelations($contractorGroupRelations)
     {
         $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;

@@ -5,15 +5,17 @@ namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use LSB\ContractorBundle\Repository\ContractorRepository;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use LSB\UtilityBundle\Traits\IdTrait;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 
 /**
- * @ORM\Entity(repositoryClass=ContractorRepository::class)
- * @ORM\Table(name="contractors")
+ * Class Contractor
+ * @package LSB\ContractorBundle\Entity
+ *
+ * @MappedSuperclass
  */
-class Contractor
+class Contractor implements ContractorInterface
 {
     use IdTrait;
     use CreatedUpdatedTrait;
@@ -48,15 +50,15 @@ class Contractor
     protected $taxNumber;
 
     /**
-     * @var Contractor|null
-     * @ORM\ManyToOne(targetEntity="Contractor", inversedBy="children")
+     * @var ContractorInterface|null
+     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
     protected $parent;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Contractor", mappedBy="parent")
+     * @var ArrayCollection|ContractorInterface[]
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", mappedBy="parent")
      */
     protected $children;
 
@@ -79,8 +81,8 @@ class Contractor
     protected $isRecipient = false;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelation", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @var ArrayCollection|ContractorGroupRelationInterface[]
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $contractorGroupRelations;
 
@@ -91,8 +93,8 @@ class Contractor
     protected $discount;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContactPerson", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @var ArrayCollection|ContactPersonInterface[]
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContactPersonInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     protected $contactPersons;
 
@@ -209,36 +211,36 @@ class Contractor
     }
 
     /**
-     * @return Contractor|null
+     * @return ContractorInterface|null
      */
-    public function getParent(): ?Contractor
+    public function getParent(): ?ContractorInterface
     {
         return $this->parent;
     }
 
     /**
-     * @param Contractor|null $parent
+     * @param ContractorInterface|null $parent
      * @return Contractor
      */
-    public function setParent(?Contractor $parent): Contractor
+    public function setParent(?ContractorInterface $parent): Contractor
     {
         $this->parent = $parent;
         return $this;
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|ContractorInterface[]
      */
-    public function getChildren(): ArrayCollection
+    public function getChildren()
     {
         return $this->children;
     }
 
     /**
-     * @param ArrayCollection $children
+     * @param ArrayCollection|ContractorInterface[] $children
      * @return Contractor
      */
-    public function setChildren(ArrayCollection $children): Contractor
+    public function setChildren($children)
     {
         $this->children = $children;
         return $this;
@@ -299,18 +301,18 @@ class Contractor
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|ContractorGroupRelationInterface[]
      */
-    public function getContractorGroupRelations(): ArrayCollection
+    public function getContractorGroupRelations()
     {
         return $this->contractorGroupRelations;
     }
 
     /**
-     * @param ArrayCollection $contractorGroupRelations
+     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
      * @return Contractor
      */
-    public function setContractorGroupRelations(ArrayCollection $contractorGroupRelations): Contractor
+    public function setContractorGroupRelations($contractorGroupRelations)
     {
         $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;
@@ -335,18 +337,18 @@ class Contractor
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|ContactPersonInterface[]
      */
-    public function getContactPersons(): ArrayCollection
+    public function getContactPersons()
     {
         return $this->contactPersons;
     }
 
     /**
-     * @param ArrayCollection $contactPersons
+     * @param ArrayCollection|ContactPersonInterface[] $contactPersons
      * @return Contractor
      */
-    public function setContactPersons(ArrayCollection $contactPersons): Contractor
+    public function setContactPersons($contactPersons)
     {
         $this->contactPersons = $contactPersons;
         return $this;

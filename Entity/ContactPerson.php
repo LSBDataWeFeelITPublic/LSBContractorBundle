@@ -6,13 +6,15 @@ namespace LSB\ContractorBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use LSB\UtilityBundle\Traits\IdTrait;
-use LSB\ContractorBundle\Repository\ContactPersonRepository;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 
 /**
- * @ORM\Entity(repositoryClass=ContactPersonRepository::class)
- * @ORM\Table(name="contact_persons")
+ * Class ContactPerson
+ * @package LSB\ContractorBundle\Entity
+ *
+ * @MappedSuperclass
  */
-class ContactPerson
+class ContactPerson implements ContactPersonInterface
 {
     use IdTrait;
     use CreatedUpdatedTrait;
@@ -42,8 +44,8 @@ class ContactPerson
     protected $phone;
 
     /**
-     * @var Contractor
-     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\Contractor", inversedBy="contactPersons")
+     * @var ContractorInterface
+     * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contactPersons")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $contractor;
@@ -138,22 +140,21 @@ class ContactPerson
     }
 
     /**
-     * @return Contractor
+     * @return ContractorInterface
      */
-    public function getContractor(): Contractor
+    public function getContractor(): ContractorInterface
     {
         return $this->contractor;
     }
 
     /**
-     * @param Contractor $contractor
+     * @param ContractorInterface $contractor
      * @return ContactPerson
      */
-    public function setContractor(Contractor $contractor): ContactPerson
+    public function setContractor(ContractorInterface $contractor): ContactPerson
     {
         $this->contractor = $contractor;
         return $this;
     }
-
 
 }

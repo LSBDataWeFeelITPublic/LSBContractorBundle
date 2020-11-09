@@ -1,0 +1,43 @@
+services:
+    LSB\ContractorBundle\Factory\ContractorFactory:
+        arguments:
+            - '%lsb_contractor.config.resources.contractor.class.entity%'
+
+    lsb_contractor_factory_contractor:
+        alias: 'LSB\ContractorBundle\Factory\ContractorFactory'
+
+    LSB\ContractorBundle\Factory\ContractorFactoryInterface: '@LSB\ContractorBundle\Factory\ContractorFactory'
+
+
+
+    LSB\ContractorBundle\Factory\ContractorGroupFactory:
+        arguments:
+            - '%lsb_contractor.config.resources.contractor_group.class.entity%'
+
+    lsb_contractor_factory_contractor_group:
+        alias: 'LSB\ContractorBundle\Factory\ContractorGroupFactory'
+
+    LSB\ContractorBundle\Factory\ContractorGroupFactoryInterface: '@LSB\ContractorBundle\Factory\ContractorGroupFactory'
+
+
+
+    LSB\ContractorBundle\Factory\ContractorGroupRelationFactory:
+        arguments:
+            - '%lsb_contractor.config.resources.contractor_group_relation.class.entity%'
+
+    lsb_contractor_factory_contractor_group_relation:
+        alias: 'LSB\ContractorBundle\Factory\ContractorGroupRelationFactory'
+
+    LSB\ContractorBundle\Factory\ContractorGroupRelationFactoryInterface: '@LSB\ContractorBundle\Factory\ContractorGroupRelationFactory'
+
+
+
+    LSB\ContractorBundle\Factory\ContactPersonFactory:
+        arguments:
+            - '%lsb_contractor.config.resources.contact_person.class.entity%'
+
+    lsb_contractor_factory_contact_person:
+        alias: 'LSB\ContractorBundle\Factory\ContactPersonFactory'
+
+    LSB\ContractorBundle\Factory\ContactPersonFactoryInterface: '@LSB\ContractorBundle\Factory\ContactPersonFactory'
+

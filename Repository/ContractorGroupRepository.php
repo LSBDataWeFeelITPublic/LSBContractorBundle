@@ -6,12 +6,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use LSB\ContractorBundle\Entity\ContractorGroup;
 
-
 /**
- * @method ContractorGroup|null find($id, $lockMode = null, $lockVersion = null)
- * @method ContractorGroup|null findOneBy(array $criteria, array $orderBy = null)
- * @method ContractorGroup[]    findAll()
- * @method ContractorGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class ContractorGroupRepository
+ * @package LSB\ContractorBundle\Repository
  */
 class ContractorGroupRepository extends ServiceEntityRepository
 {

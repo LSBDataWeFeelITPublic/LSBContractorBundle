@@ -1,0 +1,24 @@
+services:
+    LSB\ContractorBundle\Manager\ContractorManager:
+        arguments:
+            - '@lsb_utility_object_manager'
+            - '@LSB\ContractorBundle\Factory\ContractorFactory'
+
+    LSB\ContractorBundle\Manager\ContractorGroupManager:
+        arguments:
+            - '@lsb_utility_object_manager'
+            - '@LSB\ContractorBundle\Factory\ContractorGroupFactory'
+
+
+    LSB\ContractorBundle\Manager\ContractorGroupRelationManager:
+        arguments:
+            - '@lsb_utility_object_manager'
+            - '@LSB\ContractorBundle\Factory\ContractorGroupRelationFactory'
+
+
+    LSB\ContractorBundle\Manager\ContactPersonManager:
+        arguments:
+            - '@lsb_utility_object_manager'
+            - '@LSB\ContractorBundle\Factory\ContactPersonFactory'
+
+

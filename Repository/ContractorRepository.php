@@ -1,17 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace LSB\ContractorBundle\Repository;
-
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use LSB\ContractorBundle\Entity\Contractor;
 
 /**
- * @method Contractor|null find($id, $lockMode = null, $lockVersion = null)
- * @method Contractor|null findOneBy(array $criteria, array $orderBy = null)
- * @method Contractor[]    findAll()
- * @method Contractor[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * Class ContractorRepository
+ * @package LSB\ContractorBundle\Repository
  */
 class ContractorRepository extends ServiceEntityRepository
 {
@@ -20,32 +18,5 @@ class ContractorRepository extends ServiceEntityRepository
         parent::__construct($registry, Contractor::class);
     }
 
-    // /**
-    //  * @return Contractor[] Returns an array of Contractor objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Contractor
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
