@@ -6,8 +6,8 @@ namespace LSB\ContractorBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
-use LSB\UtilityBundle\Traits\IdTrait;
 use Doctrine\ORM\Mapping\MappedSuperclass;
+use LSB\UtilityBundle\Traits\UuidTrait;
 
 /**
  * Class Contractor
@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
  */
 class Contractor implements ContractorInterface
 {
-    use IdTrait;
+    use UuidTrait;
     use CreatedUpdatedTrait;
 
     /**

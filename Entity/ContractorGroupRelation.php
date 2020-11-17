@@ -36,7 +36,7 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
      */
     public function __construct()
     {
-        $this->generateUuid();
+
     }
 
     public function __clone()
@@ -44,7 +44,6 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
         if ($this->getId()) {
             $this->id = null;
         }
-        $this->generateUuid($force = true);
     }
 
     /**

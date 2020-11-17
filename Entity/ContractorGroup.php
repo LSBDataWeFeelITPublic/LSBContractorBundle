@@ -6,7 +6,7 @@ namespace LSB\ContractorBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
-use LSB\UtilityBundle\Traits\IdTrait;
+use LSB\UtilityBundle\Traits\UuidTrait;
 
 /**
  * Class ContractorGroup
@@ -16,7 +16,7 @@ use LSB\UtilityBundle\Traits\IdTrait;
  */
 class ContractorGroup implements ContractorGroupInterface
 {
-    use IdTrait;
+    use UuidTrait;
 
     /**
      * @var string|null
