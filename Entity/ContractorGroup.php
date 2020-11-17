@@ -57,6 +57,14 @@ class ContractorGroup implements ContractorGroupInterface
     /**
      * @return string|null
      */
+    public function __toString(): ?string
+    {
+        return $this->nane;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getName(): ?string
     {
         return $this->name;

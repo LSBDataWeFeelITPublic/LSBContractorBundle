@@ -18,14 +18,14 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
     use IdTrait;
 
     /**
-     * @var ContractorInterface
+     * @var ContractorInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     protected $contractor;
 
     /**
-     * @var ContractorGroupInterface
+     * @var ContractorGroupInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_group_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
@@ -47,9 +47,9 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
     }
 
     /**
-     * @return ContractorInterface
+     * @return ContractorInterface|null
      */
-    public function getContractor(): ContractorInterface
+    public function getContractor(): ?ContractorInterface
     {
         return $this->contractor;
     }
@@ -65,9 +65,9 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
     }
 
     /**
-     * @return ContractorGroupInterface
+     * @return ContractorGroupInterface|null
      */
-    public function getContractorGroup(): ContractorGroupInterface
+    public function getContractorGroup(): ?ContractorGroupInterface
     {
         return $this->contractorGroup;
     }

@@ -39,7 +39,7 @@ class Contractor implements ContractorInterface
     protected $shortName;
 
     /**
-     * @ORM\Embedded(class="Address", columnPrefix="contractor_")
+     * @ORM\Embedded(class="LSB\ContractorBundle\Entity\Address", columnPrefix="contractor_")
      */
     protected $address;
 
@@ -118,6 +118,14 @@ class Contractor implements ContractorInterface
         }
 
         $this->generateUuid($force = true);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function __toString(): ?string
+    {
+        return $this->number;
     }
 
     /**
@@ -301,24 +309,6 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @return ArrayCollection|ContractorGroupRelationInterface[]
-     */
-    public function getContractorGroupRelations()
-    {
-        return $this->contractorGroupRelations;
-    }
-
-    /**
-     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
-     * @return Contractor
-     */
-    public function setContractorGroupRelations($contractorGroupRelations)
-    {
-        $this->contractorGroupRelations = $contractorGroupRelations;
-        return $this;
-    }
-
-    /**
      * @return float|null
      */
     public function getDiscount(): ?float
@@ -353,5 +343,53 @@ class Contractor implements ContractorInterface
         $this->contactPersons = $contactPersons;
         return $this;
     }
+
+    /**
+     * @return ArrayCollection|ContractorGroupRelationInterface[]
+     */
+    public function getContractorGroupRelations()
+    {
+        return $this->contractorGroupRelations;
+    }
+
+    /**
+     * @param ContractorGroupRelationInterface $contractorGroupRelation
+     *
+     * @return Contractor
+     */
+    public function addContractorGroupRelation(ContractorGroupRelationInterface $contractorGroupRelation)
+    {
+        $contractorGroupRelation->setContractor($this);
+
+        if (false === $this->contractorGroupRelations->contains($contractorGroupRelation)) {
+            $this->contractorGroupRelations->add($contractorGroupRelation);
+        }
+        return $this;
+    }
+
+    /**
+     * @param ContractorGroupRelationInterface $contractorGroupRelation
+     *
+     * @return Contractor
+     */
+    public function removeContractorGroupRelation(ContractorGroupRelationInterface $contractorGroupRelation)
+    {
+        if (true === $this->contractorGroupRelations->contains($contractorGroupRelation)) {
+            $this->contractorGroupRelations->removeElement($contractorGroupRelation);
+        }
+        return $this;
+    }
+
+    /**
+     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
+     * @return Contractor
+     */
+    public function setContractorGroupRelations($contractorGroupRelations)
+    {
+        $this->contractorGroupRelations = $contractorGroupRelations;
+        return $this;
+    }
+
+
 
 }

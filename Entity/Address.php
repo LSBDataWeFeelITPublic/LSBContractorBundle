@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\MappedSuperclass;
 
 /**
  * @ORM\Embeddable()

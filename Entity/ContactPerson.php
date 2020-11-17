@@ -44,7 +44,7 @@ class ContactPerson implements ContactPersonInterface
     protected $phone;
 
     /**
-     * @var ContractorInterface
+     * @var ContractorInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contactPersons")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
@@ -65,6 +65,14 @@ class ContactPerson implements ContactPersonInterface
             $this->id = null;
         }
         $this->generateUuid($force = true);
+    }
+
+    /**
+     * @return string|null
+     */
+    public function __toString(): ?string
+    {
+        return $this->email;
     }
 
     /**
@@ -140,18 +148,18 @@ class ContactPerson implements ContactPersonInterface
     }
 
     /**
-     * @return ContractorInterface
+     * @return ContractorInterface|null
      */
-    public function getContractor(): ContractorInterface
+    public function getContractor(): ?ContractorInterface
     {
         return $this->contractor;
     }
 
     /**
-     * @param ContractorInterface $contractor
+     * @param ContractorInterface|null $contractor
      * @return ContactPerson
      */
-    public function setContractor(ContractorInterface $contractor): ContactPerson
+    public function setContractor(?ContractorInterface $contractor): ContactPerson
     {
         $this->contractor = $contractor;
         return $this;
