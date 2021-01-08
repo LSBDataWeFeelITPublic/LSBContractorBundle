@@ -5,6 +5,7 @@ namespace LSB\ContractorBundle\Manager;
 
 use LSB\ContractorBundle\Entity\ContactPersonInterface;
 use LSB\ContractorBundle\Factory\ContactPersonFactoryInterface;
+use LSB\ContractorBundle\Repository\ContactPersonRepositoryInterface;
 use LSB\UtilityBundle\Manager\ObjectManagerInterface;
 use LSB\UtilityBundle\Manager\BaseManager;
 
@@ -16,15 +17,17 @@ class ContactPersonManager extends BaseManager
 {
 
     /**
-     * ContractorManager constructor.
+     * ContactPersonManager constructor.
      * @param ObjectManagerInterface $objectManager
      * @param ContactPersonFactoryInterface $factory
+     * @param ContactPersonRepositoryInterface $repository
      */
     public function __construct(
         ObjectManagerInterface $objectManager,
-        ContactPersonFactoryInterface $factory
+        ContactPersonFactoryInterface $factory,
+        ContactPersonRepositoryInterface $repository
     ) {
-        parent::__construct($objectManager, $factory);
+        parent::__construct($objectManager, $factory, $repository);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace LSB\ContractorBundle\Manager;
 
 use LSB\ContractorBundle\Entity\ContractorGroupInterface;
 use LSB\ContractorBundle\Factory\ContractorGroupFactoryInterface;
+use LSB\ContractorBundle\Repository\ContractorGroupRepositoryInterface;
 use LSB\UtilityBundle\Manager\ObjectManagerInterface;
 use LSB\UtilityBundle\Manager\BaseManager;
 
@@ -16,15 +17,17 @@ class ContractorGroupManager extends BaseManager
 {
 
     /**
-     * ContractorManager constructor.
+     * ContractorGroupManager constructor.
      * @param ObjectManagerInterface $objectManager
      * @param ContractorGroupFactoryInterface $factory
+     * @param ContractorGroupRepositoryInterface $repository
      */
     public function __construct(
         ObjectManagerInterface $objectManager,
-        ContractorGroupFactoryInterface $factory
+        ContractorGroupFactoryInterface $factory,
+        ContractorGroupRepositoryInterface $repository
     ) {
-        parent::__construct($objectManager, $factory);
+        parent::__construct($objectManager, $factory, $repository);
     }
 
     /**

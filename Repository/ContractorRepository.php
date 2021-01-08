@@ -11,12 +11,17 @@ use LSB\ContractorBundle\Entity\Contractor;
  * Class ContractorRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContractorRepository extends ServiceEntityRepository
+class ContractorRepository extends ServiceEntityRepository implements ContractorRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Contractor::class);
-    }
 
+    /**
+     * ContractorRepository constructor.
+     * @param ManagerRegistry $registry
+     * @param string|null $stringClass
+     */
+    public function __construct(ManagerRegistry $registry, ?string $stringClass = null)
+    {
+        parent::__construct($registry, $stringClass ?? Contractor::class);
+    }
 
 }

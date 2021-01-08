@@ -10,11 +10,17 @@ use LSB\ContractorBundle\Entity\ContactPerson;
  * Class ContactPersonRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContactPersonRepository extends ServiceEntityRepository
+class ContactPersonRepository extends ServiceEntityRepository implements ContactPersonRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+
+    /**
+     * ContactPersonRepository constructor.
+     * @param ManagerRegistry $registry
+     * @param string|null $stringClass
+     */
+    public function __construct(ManagerRegistry $registry, ?string $stringClass = null)
     {
-        parent::__construct($registry, ContactPerson::class);
+        parent::__construct($registry, $stringClass ?? ContactPerson::class);
     }
 
 
