@@ -41,16 +41,16 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->getRootNode()
             ->children()
-            ->arrayNode('resources')->defaultValue([])
+            ->arrayNode('resources')->isRequired()
             ->children()
 
             // Start Contractor
-            ->arrayNode('contractor')
+            ->arrayNode('contractor')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')
+            ->arrayNode('classes')->isRequired()
             ->children()
-            ->scalarNode('entity')->cannotBeEmpty()->end()
+            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('interface')->defaultValue(ContractorInterface::class)->end()
             ->scalarNode('factory')->defaultValue(ContractorFactory::class)->end()
             ->scalarNode('repository')->defaultValue(ContractorRepository::class)->end()
@@ -63,12 +63,12 @@ class Configuration implements ConfigurationInterface
 
 
             // Start ContractorGroup
-            ->arrayNode('contractor_group')
+            ->arrayNode('contractor_group')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')
+            ->arrayNode('classes')->isRequired()
             ->children()
-            ->scalarNode('entity')->cannotBeEmpty()->end()
+            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('interface')->defaultValue(ContractorGroupInterface::class)->end()
             ->scalarNode('factory')->defaultValue(ContractorGroupFactory::class)->end()
             ->scalarNode('repository')->defaultValue(ContractorGroupRepository::class)->end()
@@ -80,12 +80,12 @@ class Configuration implements ConfigurationInterface
             // End ContractorGroup
 
             // Start ContractorGroupRelation
-            ->arrayNode('contractor_group_relation')
+            ->arrayNode('contractor_group_relation')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')
+            ->arrayNode('classes')->isRequired()
             ->children()
-            ->scalarNode('entity')->cannotBeEmpty()->end()
+            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('interface')->defaultValue(ContractorGroupRelationInterface::class)->end()
             ->scalarNode('factory')->defaultValue(ContractorGroupRelationFactory::class)->end()
             ->scalarNode('repository')->defaultValue(ContractorGroupRelationRepository::class)->end()
@@ -97,12 +97,12 @@ class Configuration implements ConfigurationInterface
             // End ContractorGroupRelation
 
             // Start ContactPerson
-            ->arrayNode('contact_person')
+            ->arrayNode('contact_person')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')
+            ->arrayNode('classes')->isRequired()
             ->children()
-            ->scalarNode('entity')->cannotBeEmpty()->end()
+            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
             ->scalarNode('interface')->defaultValue(ContactPersonInterface::class)->end()
             ->scalarNode('factory')->defaultValue(ContactPersonFactory::class)->end()
             ->scalarNode('repository')->defaultValue(ContactPersonRepository::class)->end()
