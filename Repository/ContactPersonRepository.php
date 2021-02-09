@@ -5,13 +5,16 @@ namespace LSB\ContractorBundle\Repository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use LSB\ContractorBundle\Entity\ContactPerson;
+use LSB\UtilityBundle\Repository\PaginationInterface;
+use LSB\UtilityBundle\Repository\PaginationRepositoryTrait;
 
 /**
  * Class ContactPersonRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContactPersonRepository extends ServiceEntityRepository implements ContactPersonRepositoryInterface
+class ContactPersonRepository extends ServiceEntityRepository implements ContactPersonRepositoryInterface, PaginationInterface
 {
+    use PaginationRepositoryTrait;
 
     /**
      * ContactPersonRepository constructor.
