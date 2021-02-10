@@ -6,6 +6,7 @@ namespace LSB\ContractorBundle\Manager;
 use LSB\ContractorBundle\Entity\ContractorGroupRelationInterface;
 use LSB\ContractorBundle\Factory\ContractorGroupRelationFactoryInterface;
 use LSB\ContractorBundle\Repository\ContractorGroupRelationRepositoryInterface;
+use LSB\UtilityBundle\Form\BaseEntityType;
 use LSB\UtilityBundle\Manager\ObjectManagerInterface;
 use LSB\UtilityBundle\Manager\BaseManager;
 
@@ -25,9 +26,10 @@ class ContractorGroupRelationManager extends BaseManager
     public function __construct(
         ObjectManagerInterface $objectManager,
         ContractorGroupRelationFactoryInterface $factory,
-        ContractorGroupRelationRepositoryInterface $repository
+        ContractorGroupRelationRepositoryInterface $repository,
+        ?BaseEntityType $form
     ) {
-        parent::__construct($objectManager, $factory, $repository);
+        parent::__construct($objectManager, $factory, $repository, $form);
     }
 
     /**

@@ -8,6 +8,7 @@ use LSB\ContractorBundle\Factory\ContactPersonFactoryInterface;
 use LSB\ContractorBundle\Repository\ContactPersonRepositoryInterface;
 use LSB\UtilityBundle\Manager\ObjectManagerInterface;
 use LSB\UtilityBundle\Manager\BaseManager;
+use LSB\UtilityBundle\Form\BaseEntityType;
 
 /**
  * Class ContactPersonManager
@@ -15,7 +16,6 @@ use LSB\UtilityBundle\Manager\BaseManager;
  */
 class ContactPersonManager extends BaseManager
 {
-
     /**
      * ContactPersonManager constructor.
      * @param ObjectManagerInterface $objectManager
@@ -25,9 +25,10 @@ class ContactPersonManager extends BaseManager
     public function __construct(
         ObjectManagerInterface $objectManager,
         ContactPersonFactoryInterface $factory,
-        ContactPersonRepositoryInterface $repository
+        ContactPersonRepositoryInterface $repository,
+        ?BaseEntityType $form
     ) {
-        parent::__construct($objectManager, $factory, $repository);
+        parent::__construct($objectManager, $factory, $repository, $form);
     }
 
     /**
