@@ -11,6 +11,10 @@ use LSB\ContractorBundle\Factory\ContactPersonFactory;
 use LSB\ContractorBundle\Factory\ContractorFactory;
 use LSB\ContractorBundle\Factory\ContractorGroupFactory;
 use LSB\ContractorBundle\Factory\ContractorGroupRelationFactory;
+use LSB\ContractorBundle\Form\ContactPersonType;
+use LSB\ContractorBundle\Form\ContractorGroupRelationType;
+use LSB\ContractorBundle\Form\ContractorGroupType;
+use LSB\ContractorBundle\Form\ContractorType;
 use LSB\ContractorBundle\Manager\ContactPersonManager;
 use LSB\ContractorBundle\Manager\ContractorGroupManager;
 use LSB\ContractorBundle\Manager\ContractorGroupRelationManager;
@@ -21,6 +25,7 @@ use LSB\ContractorBundle\Repository\ContractorGroupRepository;
 use LSB\ContractorBundle\Repository\ContractorRepository;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use LSB\UtilityBundle\DependencyInjection\BaseExtension as BE;
 
 /**
  * This is the class that validates and merges configuration from your app/config files.
@@ -41,20 +46,21 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->getRootNode()
             ->children()
-            ->arrayNode('resources')->isRequired()
+            ->arrayNode(BE::CONFIG_KEY_RESOURCES)->isRequired()
             ->children()
 
             // Start Contractor
             ->arrayNode('contractor')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')->isRequired()
+            ->arrayNode(BE::CONFIG_KEY_CLASSES)->isRequired()
             ->children()
-            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('interface')->defaultValue(ContractorInterface::class)->end()
-            ->scalarNode('factory')->defaultValue(ContractorFactory::class)->end()
-            ->scalarNode('repository')->defaultValue(ContractorRepository::class)->end()
-            ->scalarNode('manager')->defaultValue(ContractorManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_ENTITY)->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorInterface::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorFactory::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorRepository::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorType::class)->end()
             ->end()
             ->end()
             ->end()
@@ -66,13 +72,14 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('contractor_group')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')->isRequired()
+            ->arrayNode(BE::CONFIG_KEY_CLASSES)->isRequired()
             ->children()
-            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('interface')->defaultValue(ContractorGroupInterface::class)->end()
-            ->scalarNode('factory')->defaultValue(ContractorGroupFactory::class)->end()
-            ->scalarNode('repository')->defaultValue(ContractorGroupRepository::class)->end()
-            ->scalarNode('manager')->defaultValue(ContractorGroupManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_ENTITY)->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorGroupInterface::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorGroupFactory::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorGroupRepository::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorGroupManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorGroupType::class)->end()
             ->end()
             ->end()
             ->end()
@@ -83,13 +90,14 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('contractor_group_relation')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')->isRequired()
+            ->arrayNode(BE::CONFIG_KEY_CLASSES)->isRequired()
             ->children()
-            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('interface')->defaultValue(ContractorGroupRelationInterface::class)->end()
-            ->scalarNode('factory')->defaultValue(ContractorGroupRelationFactory::class)->end()
-            ->scalarNode('repository')->defaultValue(ContractorGroupRelationRepository::class)->end()
-            ->scalarNode('manager')->defaultValue(ContractorGroupRelationManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_ENTITY)->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorGroupRelationInterface::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorGroupRelationFactory::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorGroupRelationRepository::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorGroupRelationManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorGroupRelationType::class)->end()
             ->end()
             ->end()
             ->end()
@@ -100,13 +108,14 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('contact_person')->isRequired()
             ->addDefaultsIfNotSet()
             ->children()
-            ->arrayNode('classes')->isRequired()
+            ->arrayNode(BE::CONFIG_KEY_CLASSES)->isRequired()
             ->children()
-            ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('interface')->defaultValue(ContactPersonInterface::class)->end()
-            ->scalarNode('factory')->defaultValue(ContactPersonFactory::class)->end()
-            ->scalarNode('repository')->defaultValue(ContactPersonRepository::class)->end()
-            ->scalarNode('manager')->defaultValue(ContactPersonManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_ENTITY)->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContactPersonInterface::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContactPersonFactory::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContactPersonRepository::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContactPersonManager::class)->end()
+            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContactPersonType::class)->end()
             ->end()
             ->end()
             ->end()

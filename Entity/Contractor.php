@@ -24,79 +24,79 @@ class Contractor implements ContractorInterface
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $number;
+    protected ?string $number;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=500, nullable=true)
      */
-    protected $name;
+    protected ?string $name;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $shortName;
+    protected ?string $shortName;
 
     /**
      * @ORM\Embedded(class="LSB\ContractorBundle\Entity\Address", columnPrefix="contractor_")
      */
-    protected $address;
+    protected ?Address $address;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $taxNumber;
+    protected ?string $taxNumber;
 
     /**
      * @var ContractorInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
-    protected $parent;
+    protected ?ContractorInterface $parent;
 
     /**
      * @var ArrayCollection|ContractorInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", mappedBy="parent")
      */
-    protected $children;
+    protected ArrayCollection $children;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : true})
      */
-    protected $isPayer = true;
+    protected bool $isPayer = true;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : false})
      */
-    protected $isDelivery = false;
+    protected bool $isDelivery = false;
 
     /**
      * @var bool
      * @ORM\Column(type="boolean", nullable=false, options={"default" : false})
      */
-    protected $isRecipient = false;
+    protected bool $isRecipient = false;
 
     /**
      * @var ArrayCollection|ContractorGroupRelationInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $contractorGroupRelations;
+    protected ArrayCollection $contractorGroupRelations;
 
     /**
      * @var float|null
      * @ORM\Column(type="decimal", precision=18, scale=2, nullable=true)
      */
-    protected $discount;
+    protected ?float $discount;
 
     /**
      * @var ArrayCollection|ContactPersonInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContactPersonInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $contactPersons;
+    protected ArrayCollection $contactPersons;
 
     /**
      * Contractor constructor.
@@ -389,7 +389,6 @@ class Contractor implements ContractorInterface
         $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;
     }
-
 
 
 }

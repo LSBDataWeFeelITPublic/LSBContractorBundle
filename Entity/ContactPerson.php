@@ -23,32 +23,32 @@ class ContactPerson implements ContactPersonInterface
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $firstName;
+    protected ?string $firstName;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $lastName;
+    protected ?string $lastName;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $email;
+    protected ?string $email;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $phone;
+    protected ?string $phone;
 
     /**
      * @var ContractorInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contactPersons")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
-    protected $contractor;
+    protected ?ContractorInterface $contractor;
 
     /**
      * ContactPerson constructor.

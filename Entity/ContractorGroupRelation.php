@@ -22,14 +22,14 @@ class ContractorGroupRelation implements ContractorGroupRelationInterface
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
-    protected $contractor;
+    protected ?ContractorInterface $contractor;
 
     /**
      * @var ContractorGroupInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupInterface", inversedBy="contractorGroupRelations")
      * @ORM\JoinColumn(name="contractor_group_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
-    protected $contractorGroup;
+    protected ?ContractorGroupInterface $contractorGroup;
 
     /**
      * ContractorGroupRelation constructor.

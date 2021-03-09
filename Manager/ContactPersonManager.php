@@ -21,6 +21,7 @@ class ContactPersonManager extends BaseManager
      * @param ObjectManagerInterface $objectManager
      * @param ContactPersonFactoryInterface $factory
      * @param ContactPersonRepositoryInterface $repository
+     * @param BaseEntityType|null $form
      */
     public function __construct(
         ObjectManagerInterface $objectManager,
@@ -32,7 +33,7 @@ class ContactPersonManager extends BaseManager
     }
 
     /**
-     * @return ContactPersonInterface
+     * @return ContactPersonInterface|object
      */
     public function createNew(): ContactPersonInterface
     {

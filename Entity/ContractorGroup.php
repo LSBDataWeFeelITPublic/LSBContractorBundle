@@ -22,19 +22,19 @@ class ContractorGroup implements ContractorGroupInterface
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected $name;
+    protected ?string $name;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected $code;
+    protected ?string $code;
 
     /**
      * @var ArrayCollection|ContractorGroupRelationInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractorGroup", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected $contractorGroupRelations;
+    protected ArrayCollection $contractorGroupRelations;
 
     /**
      * ContractorGroup constructor.

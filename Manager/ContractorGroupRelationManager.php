@@ -22,6 +22,7 @@ class ContractorGroupRelationManager extends BaseManager
      * @param ObjectManagerInterface $objectManager
      * @param ContractorGroupRelationFactoryInterface $factory
      * @param ContractorGroupRelationRepositoryInterface $repository
+     * @param BaseEntityType|null $form
      */
     public function __construct(
         ObjectManagerInterface $objectManager,
@@ -33,7 +34,7 @@ class ContractorGroupRelationManager extends BaseManager
     }
 
     /**
-     * @return ContractorGroupRelationInterface
+     * @return ContractorGroupRelationInterface|object
      */
     public function createNew(): ContractorGroupRelationInterface
     {
