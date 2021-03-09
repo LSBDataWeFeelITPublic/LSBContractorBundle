@@ -46,7 +46,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->getRootNode()
             ->children()
-            ->arrayNode(BE::CONFIG_KEY_RESOURCES)->defaultValue([])
+            ->arrayNode(BE::CONFIG_KEY_RESOURCES)
             ->children()
 
             // Start Contractor
