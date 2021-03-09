@@ -50,7 +50,7 @@ class Configuration implements ConfigurationInterface
             ->children()
 
             // Start Contractor
-            ->arrayNode('contractor')->isRequired()
+            ->arrayNode('contractor')
             ->addDefaultsIfNotSet()
             ->children()
             ->arrayNode(BE::CONFIG_KEY_CLASSES)
