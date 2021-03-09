@@ -15,6 +15,7 @@ use LSB\ContractorBundle\Form\ContactPersonType;
 use LSB\ContractorBundle\Form\ContractorGroupRelationType;
 use LSB\ContractorBundle\Form\ContractorGroupType;
 use LSB\ContractorBundle\Form\ContractorType;
+use LSB\ContractorBundle\LSBContractorBundle;
 use LSB\ContractorBundle\Manager\ContactPersonManager;
 use LSB\ContractorBundle\Manager\ContractorGroupManager;
 use LSB\ContractorBundle\Manager\ContractorGroupRelationManager;
@@ -46,6 +47,7 @@ class Configuration implements ConfigurationInterface
         $treeBuilder
             ->getRootNode()
             ->children()
+            ->scalarNode(BE::CONFIG_KEY_TRANSLATION_DOMAIN)->defaultValue((new \ReflectionClass(LSBContractorBundle::class))->getShortName())->end()
             ->arrayNode(BE::CONFIG_KEY_RESOURCES)
             ->children()
 

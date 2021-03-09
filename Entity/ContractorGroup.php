@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\MappedSuperclass;
 use LSB\UtilityBundle\Traits\UuidTrait;
@@ -31,10 +32,10 @@ class ContractorGroup implements ContractorGroupInterface
     protected ?string $code;
 
     /**
-     * @var ArrayCollection|ContractorGroupRelationInterface[]
+     * @var Collection|ContractorGroupRelationInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractorGroup", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected ArrayCollection $contractorGroupRelations;
+    protected Collection $contractorGroupRelations;
 
     /**
      * ContractorGroup constructor.
@@ -59,7 +60,7 @@ class ContractorGroup implements ContractorGroupInterface
      */
     public function __toString(): ?string
     {
-        return $this->nane;
+        return $this->name;
     }
 
     /**
@@ -99,7 +100,7 @@ class ContractorGroup implements ContractorGroupInterface
     }
 
     /**
-     * @return ArrayCollection|ContractorGroupRelationInterface[]
+     * @return Collection|ContractorGroupRelationInterface[]
      */
     public function getContractorGroupRelations()
     {
@@ -107,7 +108,7 @@ class ContractorGroup implements ContractorGroupInterface
     }
 
     /**
-     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
+     * @param Collection|ContractorGroupRelationInterface[] $contractorGroupRelations
      * @return ContractorGroup
      */
     public function setContractorGroupRelations($contractorGroupRelations)

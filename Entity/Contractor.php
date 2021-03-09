@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace LSB\ContractorBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use LSB\UtilityBundle\Traits\CreatedUpdatedTrait;
 use Doctrine\ORM\Mapping\MappedSuperclass;
@@ -57,10 +58,10 @@ class Contractor implements ContractorInterface
     protected ?ContractorInterface $parent;
 
     /**
-     * @var ArrayCollection|ContractorInterface[]
+     * @var Collection|ContractorInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", mappedBy="parent")
      */
-    protected ArrayCollection $children;
+    protected Collection $children;
 
     /**
      * @var bool
@@ -81,10 +82,10 @@ class Contractor implements ContractorInterface
     protected bool $isRecipient = false;
 
     /**
-     * @var ArrayCollection|ContractorGroupRelationInterface[]
+     * @var Collection|ContractorGroupRelationInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected ArrayCollection $contractorGroupRelations;
+    protected Collection $contractorGroupRelations;
 
     /**
      * @var float|null
@@ -93,10 +94,10 @@ class Contractor implements ContractorInterface
     protected ?float $discount;
 
     /**
-     * @var ArrayCollection|ContactPersonInterface[]
+     * @var Collection|ContactPersonInterface[]
      * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContactPersonInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected ArrayCollection $contactPersons;
+    protected Collection $contactPersons;
 
     /**
      * Contractor constructor.
@@ -183,18 +184,18 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @return Address
+     * @return Address|null
      */
-    public function getAddress(): Address
+    public function getAddress(): ?Address
     {
         return $this->address;
     }
 
     /**
-     * @param Address $address
+     * @param Address|null $address
      * @return Contractor
      */
-    public function setAddress(Address $address): Contractor
+    public function setAddress(?Address $address): Contractor
     {
         $this->address = $address;
         return $this;
@@ -237,7 +238,7 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @return ArrayCollection|ContractorInterface[]
+     * @return Collection|ContractorInterface[]
      */
     public function getChildren()
     {
@@ -245,7 +246,7 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @param ArrayCollection|ContractorInterface[] $children
+     * @param Collection|ContractorInterface[] $children
      * @return Contractor
      */
     public function setChildren($children)
@@ -309,6 +310,24 @@ class Contractor implements ContractorInterface
     }
 
     /**
+     * @return Collection|ContractorGroupRelationInterface[]
+     */
+    public function getContractorGroupRelations()
+    {
+        return $this->contractorGroupRelations;
+    }
+
+    /**
+     * @param Collection|ContractorGroupRelationInterface[] $contractorGroupRelations
+     * @return Contractor
+     */
+    public function setContractorGroupRelations($contractorGroupRelations)
+    {
+        $this->contractorGroupRelations = $contractorGroupRelations;
+        return $this;
+    }
+
+    /**
      * @return float|null
      */
     public function getDiscount(): ?float
@@ -327,7 +346,7 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @return ArrayCollection|ContactPersonInterface[]
+     * @return Collection|ContactPersonInterface[]
      */
     public function getContactPersons()
     {
@@ -335,58 +354,12 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @param ArrayCollection|ContactPersonInterface[] $contactPersons
+     * @param Collection|ContactPersonInterface[] $contactPersons
      * @return Contractor
      */
     public function setContactPersons($contactPersons)
     {
         $this->contactPersons = $contactPersons;
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection|ContractorGroupRelationInterface[]
-     */
-    public function getContractorGroupRelations()
-    {
-        return $this->contractorGroupRelations;
-    }
-
-    /**
-     * @param ContractorGroupRelationInterface $contractorGroupRelation
-     *
-     * @return Contractor
-     */
-    public function addContractorGroupRelation(ContractorGroupRelationInterface $contractorGroupRelation)
-    {
-        $contractorGroupRelation->setContractor($this);
-
-        if (false === $this->contractorGroupRelations->contains($contractorGroupRelation)) {
-            $this->contractorGroupRelations->add($contractorGroupRelation);
-        }
-        return $this;
-    }
-
-    /**
-     * @param ContractorGroupRelationInterface $contractorGroupRelation
-     *
-     * @return Contractor
-     */
-    public function removeContractorGroupRelation(ContractorGroupRelationInterface $contractorGroupRelation)
-    {
-        if (true === $this->contractorGroupRelations->contains($contractorGroupRelation)) {
-            $this->contractorGroupRelations->removeElement($contractorGroupRelation);
-        }
-        return $this;
-    }
-
-    /**
-     * @param ArrayCollection|ContractorGroupRelationInterface[] $contractorGroupRelations
-     * @return Contractor
-     */
-    public function setContractorGroupRelations($contractorGroupRelations)
-    {
-        $this->contractorGroupRelations = $contractorGroupRelations;
         return $this;
     }
 
