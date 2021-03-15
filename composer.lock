@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d27fe9111382ae9848bdf4508c556989",
+    "content-hash": "9ad551e69b4f8ed1c9b2027edacd3051",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1923,7 +1923,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:LSBDataWeFeelITPublic/LSBUtilityBundle.git",
+                "url": "https://github.com/LSBDataWeFeelITPublic/LSBUtilityBundle.git",
                 "reference": "3e7f3a406c6b1f11d9a1c743d73bd530ea268c61"
             },
             "require": {
