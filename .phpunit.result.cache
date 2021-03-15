@@ -1,1 +1,0 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":286:{a:2:{s:7:"defects";a:1:{s:63:"LSB\ContractorBundle\Tests\ContractorManagerTest::testCreateNew";i:4;}s:5:"times";a:2:{s:63:"LSB\ContractorBundle\Tests\ContractorManagerTest::testCreateNew";d:0.005;s:72:"LSB\ContractorBundle\Tests\ContractorManagerTest::testReturnedInterfaces";d:0.005;}}}
