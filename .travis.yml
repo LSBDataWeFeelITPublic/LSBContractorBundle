@@ -20,6 +20,6 @@ install:
 
 script:
     # - composer validate --strict --no-check-lock
-    - vendor/bin/phpunit --coverage-clover=coverage.clover
+    - XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover=coverage.clover
     - wget https://scrutinizer-ci.com/ocular.phar
     - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
