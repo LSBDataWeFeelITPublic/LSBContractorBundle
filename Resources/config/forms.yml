@@ -1,0 +1,17 @@
+services:
+    LSB\ContractorBundle\Form\ContractorType:
+        tags:
+            - { name: form.type }
+
+    LSB\ContractorBundle\Form\ContractorGroupType:
+        tags:
+            - { name: form.type }
+
+    LSB\ContractorBundle\Form\ContractorGroupRelationType:
+        tags:
+            - { name: form.type }
+
+    LSB\ContractorBundle\Form\ContactPersonType:
+        tags:
+            - { name: form.type }
+

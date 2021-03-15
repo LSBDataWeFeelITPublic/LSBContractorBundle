@@ -1,0 +1,43 @@
+{
+  "name": "lsb/contractor-bundle",
+  "type": "symfony-bundle",
+  "description": "Contractor Bundle",
+  "license": "MIT",
+  "keywords": [
+    "symfony",
+    "contractor"
+  ],
+  "homepage": "https://lsb.pl",
+  "authors": [
+    {
+      "name": "LSB DATA",
+      "email": "piotr.bazylewicz@lsb.com.pl"
+    }
+  ],
+  "require": {
+    "php": "^7.4 | ^8.0",
+    "symfony/framework-bundle": "^5.2",
+    "symfony/orm-pack": "^1.0",
+    "symfony/validator": "^5.2",
+    "lsb/utility-bundle": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.0",
+    "symfony/phpunit-bridge": "^5.0",
+    "php-coveralls/php-coveralls": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "LSB\\ContractorBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "Tests/"
+    ]
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "git@github.com:LSBDataWeFeelITPublic/LSBUtilityBundle.git"
+    }
+  ]
+}
