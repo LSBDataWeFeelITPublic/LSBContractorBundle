@@ -48,7 +48,7 @@ class ContractorManager extends BaseManager
      */
     public function getFactory(): ContractorFactoryInterface
     {
-        return $this->factory;
+        return parent::getFactory();
     }
 
     /**
@@ -56,10 +56,6 @@ class ContractorManager extends BaseManager
      */
     public function getRepository(): ContractorRepositoryInterface
     {
-        if (!$this->repository instanceof ContractorRepositoryInterface) {
-            throw new \Exception('Missing repository service');
-        }
-
-        return $this->repository;
+        return parent::getRepository();
     }
 }

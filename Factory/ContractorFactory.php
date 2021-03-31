@@ -18,7 +18,7 @@ class ContractorFactory extends BaseFactory implements ContractorFactoryInterfac
      */
     public function createNew(): ContractorInterface
     {
-        return new $this->className();
+        return parent::createNew();
     }
 
 }
