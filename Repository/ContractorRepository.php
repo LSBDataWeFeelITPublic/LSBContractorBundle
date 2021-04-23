@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace LSB\ContractorBundle\Repository;
 
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use LSB\ContractorBundle\Entity\Contractor;
+use LSB\UtilityBundle\Repository\BaseRepository;
 use LSB\UtilityBundle\Repository\PaginationInterface;
 use LSB\UtilityBundle\Repository\PaginationRepositoryTrait;
 
@@ -13,7 +13,7 @@ use LSB\UtilityBundle\Repository\PaginationRepositoryTrait;
  * Class ContractorRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContractorRepository extends ServiceEntityRepository implements ContractorRepositoryInterface, PaginationInterface
+class ContractorRepository extends BaseRepository implements ContractorRepositoryInterface, PaginationInterface
 {
     use PaginationRepositoryTrait;
 
