@@ -78,7 +78,7 @@ class Configuration implements ConfigurationInterface
             )
             ->end()
             ->resourceNode(
-                'contractor_group_relation',
+                'contact_person',
                 ContactPersonInterface::class,
                 ContactPersonFactory::class,
                 ContactPersonRepository::class,
