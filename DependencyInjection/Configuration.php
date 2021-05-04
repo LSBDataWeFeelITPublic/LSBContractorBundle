@@ -24,7 +24,7 @@ use LSB\ContractorBundle\Repository\ContactPersonRepository;
 use LSB\ContractorBundle\Repository\ContractorGroupRelationRepository;
 use LSB\ContractorBundle\Repository\ContractorGroupRepository;
 use LSB\ContractorBundle\Repository\ContractorRepository;
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use LSB\UtilityBundle\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use LSB\UtilityBundle\DependencyInjection\BaseExtension as BE;
 
