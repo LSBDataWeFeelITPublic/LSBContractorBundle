@@ -43,88 +43,49 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder(self::CONFIG_KEY);
-
+        
         $treeBuilder
             ->getRootNode()
             ->children()
-            ->scalarNode(BE::CONFIG_KEY_TRANSLATION_DOMAIN)->defaultValue((new \ReflectionClass(LSBContractorBundle::class))->getShortName())->end()
-            ->arrayNode(BE::CONFIG_KEY_RESOURCES)
+            ->bundleTranslationDomainScalar(LSBContractorBundle::class)->end()
+            ->resourcesNode()
             ->children()
-
-            // Start Contractor
-            ->arrayNode('contractor')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->arrayNode(BE::CONFIG_KEY_CLASSES)
-            ->children()
-            ->scalarNode(BE::CONFIG_KEY_ENTITY)->end()
-            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorInterface::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorFactory::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorRepository::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorManager::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorType::class)->end()
+            ->resourceNode(
+                'contractor',
+                ContractorInterface::class,
+                ContractorFactory::class,
+                ContractorRepository::class,
+                ContractorManager::class,
+                ContractorType::class
+            )
             ->end()
+            ->resourceNode(
+                'contractor_group',
+                ContractorGroupInterface::class,
+                ContractorGroupFactory::class,
+                ContractorGroupRepository::class,
+                ContractorGroupManager::class,
+                ContractorGroupType::class
+            )
             ->end()
+            ->resourceNode(
+                'contractor_group_relation',
+                ContractorGroupRelationInterface::class,
+                ContractorGroupRelationFactory::class,
+                ContractorGroupRelationRepository::class,
+                ContractorGroupRelationManager::class,
+                ContractorGroupRelationType::class
+            )
             ->end()
+            ->resourceNode(
+                'contractor_group_relation',
+                ContactPersonInterface::class,
+                ContactPersonFactory::class,
+                ContactPersonRepository::class,
+                ContactPersonManager::class,
+                ContactPersonType::class
+            )
             ->end()
-            // End Contractor
-
-
-            // Start ContractorGroup
-            ->arrayNode('contractor_group')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->arrayNode(BE::CONFIG_KEY_CLASSES)
-            ->children()
-            ->scalarNode(BE::CONFIG_KEY_ENTITY)->end()
-            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorGroupInterface::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorGroupFactory::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorGroupRepository::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorGroupManager::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorGroupType::class)->end()
-            ->end()
-            ->end()
-            ->end()
-            ->end()
-            // End ContractorGroup
-
-            // Start ContractorGroupRelation
-            ->arrayNode('contractor_group_relation')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->arrayNode(BE::CONFIG_KEY_CLASSES)
-            ->children()
-            ->scalarNode(BE::CONFIG_KEY_ENTITY)->end()
-            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContractorGroupRelationInterface::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContractorGroupRelationFactory::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContractorGroupRelationRepository::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContractorGroupRelationManager::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContractorGroupRelationType::class)->end()
-            ->end()
-            ->end()
-            ->end()
-            ->end()
-            // End ContractorGroupRelation
-
-            // Start ContactPerson
-            ->arrayNode('contact_person')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->arrayNode(BE::CONFIG_KEY_CLASSES)
-            ->children()
-            ->scalarNode(BE::CONFIG_KEY_ENTITY)->end()
-            ->scalarNode(BE::CONFIG_KEY_INTERFACE)->defaultValue(ContactPersonInterface::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FACTORY)->defaultValue(ContactPersonFactory::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_REPOSITORY)->defaultValue(ContactPersonRepository::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_MANAGER)->defaultValue(ContactPersonManager::class)->end()
-            ->scalarNode(BE::CONFIG_KEY_FORM)->defaultValue(ContactPersonType::class)->end()
-            ->end()
-            ->end()
-            ->end()
-            ->end()
-            // End ContactPerson
-
-
             ->end()
             ->end()
             ->end();
