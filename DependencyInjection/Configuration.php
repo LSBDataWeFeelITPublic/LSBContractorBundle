@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace LSB\ContractorBundle\DependencyInjection;
 
+use LSB\ContractorBundle\Entity\ContactPerson;
 use LSB\ContractorBundle\Entity\ContactPersonInterface;
+use LSB\ContractorBundle\Entity\Contractor;
+use LSB\ContractorBundle\Entity\ContractorGroup;
 use LSB\ContractorBundle\Entity\ContractorGroupInterface;
+use LSB\ContractorBundle\Entity\ContractorGroupRelation;
 use LSB\ContractorBundle\Entity\ContractorGroupRelationInterface;
 use LSB\ContractorBundle\Entity\ContractorInterface;
 use LSB\ContractorBundle\Factory\ContactPersonFactory;
@@ -52,6 +56,7 @@ class Configuration implements ConfigurationInterface
             ->children()
             ->resourceNode(
                 'contractor',
+                Contractor::class,
                 ContractorInterface::class,
                 ContractorFactory::class,
                 ContractorRepository::class,
@@ -61,6 +66,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->resourceNode(
                 'contractor_group',
+                ContractorGroup::class,
                 ContractorGroupInterface::class,
                 ContractorGroupFactory::class,
                 ContractorGroupRepository::class,
@@ -70,6 +76,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->resourceNode(
                 'contractor_group_relation',
+                ContractorGroupRelation::class,
                 ContractorGroupRelationInterface::class,
                 ContractorGroupRelationFactory::class,
                 ContractorGroupRelationRepository::class,
@@ -79,6 +86,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->resourceNode(
                 'contact_person',
+                ContactPerson::class,
                 ContactPersonInterface::class,
                 ContactPersonFactory::class,
                 ContactPersonRepository::class,
