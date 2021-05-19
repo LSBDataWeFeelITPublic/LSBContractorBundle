@@ -22,6 +22,12 @@ class Contractor implements ContractorInterface
     use CreatedUpdatedTrait;
 
     /**
+     * @var integer|null
+     * @ORM\Column(type="integer", nullable=true, options={"default": 20})
+     */
+    protected ?int $type = self::TYPE_COMPANY;
+
+    /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -362,6 +368,24 @@ class Contractor implements ContractorInterface
     public function setContactPersons($contactPersons)
     {
         $this->contactPersons = $contactPersons;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param int|null $type
+     * @return $this
+     */
+    public function setType(?int $type): self
+    {
+        $this->type = $type;
         return $this;
     }
 
