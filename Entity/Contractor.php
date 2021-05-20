@@ -90,10 +90,10 @@ class Contractor implements ContractorInterface
     protected bool $isRecipient = false;
 
     /**
-     * @var Collection|ContractorGroupRelationInterface[]
-     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupRelationInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @var Collection|ContractorGroupInterface[]
+     * @ORM\OneToMany(targetEntity="LSB\ContractorBundle\Entity\ContractorGroupInterface", mappedBy="contractor", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    protected Collection $contractorGroupRelations;
+    protected Collection $contractorGroups;
 
     /**
      * @var float|null
@@ -116,7 +116,7 @@ class Contractor implements ContractorInterface
 
         $this->address = new Address();
         $this->children = new ArrayCollection();
-        $this->contractorGroupRelations = new ArrayCollection();
+        $this->contractorGroups = new ArrayCollection();
         $this->contactPersons = new ArrayCollection();
     }
 
@@ -135,6 +135,24 @@ class Contractor implements ContractorInterface
     public function __toString(): ?string
     {
         return $this->number;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param int|null $type
+     * @return Contractor
+     */
+    public function setType(?int $type): Contractor
+    {
+        $this->type = $type;
+        return $this;
     }
 
     /**
@@ -318,20 +336,20 @@ class Contractor implements ContractorInterface
     }
 
     /**
-     * @return Collection|ContractorGroupRelationInterface[]
+     * @return Collection|ContractorGroupInterface[]
      */
-    public function getContractorGroupRelations()
+    public function getContractorGroups()
     {
-        return $this->contractorGroupRelations;
+        return $this->contractorGroups;
     }
 
     /**
-     * @param Collection|ContractorGroupRelationInterface[] $contractorGroupRelations
+     * @param Collection|ContractorGroupInterface[] $contractorGroups
      * @return Contractor
      */
-    public function setContractorGroupRelations($contractorGroupRelations)
+    public function setContractorGroups($contractorGroups)
     {
-        $this->contractorGroupRelations = $contractorGroupRelations;
+        $this->contractorGroups = $contractorGroups;
         return $this;
     }
 
@@ -370,24 +388,5 @@ class Contractor implements ContractorInterface
         $this->contactPersons = $contactPersons;
         return $this;
     }
-
-    /**
-     * @return int|null
-     */
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param int|null $type
-     * @return $this
-     */
-    public function setType(?int $type): self
-    {
-        $this->type = $type;
-        return $this;
-    }
-
 
 }

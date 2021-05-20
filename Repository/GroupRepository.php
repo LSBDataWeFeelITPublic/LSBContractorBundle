@@ -3,27 +3,27 @@
 namespace LSB\ContractorBundle\Repository;
 
 use Doctrine\Persistence\ManagerRegistry;
-use LSB\ContractorBundle\Entity\ContractorGroupRelation;
+use LSB\ContractorBundle\Entity\Group;
 use LSB\UtilityBundle\Repository\BaseRepository;
 use LSB\UtilityBundle\Repository\PaginationInterface;
 use LSB\UtilityBundle\Repository\PaginationRepositoryTrait;
 
 /**
- * Class ContractorGroupRelationRepository
+ * Class GroupRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContractorGroupRelationRepository extends BaseRepository implements ContractorGroupRelationRepositoryInterface, PaginationInterface
+class GroupRepository extends BaseRepository implements GroupRepositoryInterface, PaginationInterface
 {
     use PaginationRepositoryTrait;
 
     /**
-     * ContractorGroupRelationRepository constructor.
+     * GroupRepository constructor.
      * @param ManagerRegistry $registry
      * @param string|null $stringClass
      */
     public function __construct(ManagerRegistry $registry, ?string $stringClass = null)
     {
-        parent::__construct($registry, $stringClass ?? ContractorGroupRelation::class);
+        parent::__construct($registry, $stringClass ?? Group::class);
     }
 
 

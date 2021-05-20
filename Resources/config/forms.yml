@@ -3,11 +3,11 @@ services:
         tags:
             - { name: form.type }
 
-    LSB\ContractorBundle\Form\ContractorGroupType:
+    LSB\ContractorBundle\Form\GroupType:
         tags:
             - { name: form.type }
 
-    LSB\ContractorBundle\Form\ContractorGroupRelationType:
+    LSB\ContractorBundle\Form\ContractorGroupType:
         tags:
             - { name: form.type }
 

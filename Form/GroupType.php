@@ -6,10 +6,10 @@ namespace LSB\ContractorBundle\Form;
 use LSB\UtilityBundle\Form\BaseEntityType;
 
 /**
- * Class ContractorGroupRelationType
+ * Class GroupType
  * @package LSB\ContractorBundle\Form
  */
-class ContractorGroupRelationType extends BaseEntityType
+class GroupType extends BaseEntityType
 {
 
 }

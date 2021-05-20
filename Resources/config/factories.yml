@@ -10,6 +10,17 @@ services:
 
 
 
+    LSB\ContractorBundle\Factory\GroupFactory:
+        arguments:
+            - '%lsb_contractor.config.resources.group.class.entity%'
+
+    lsb_contractor_factory_group:
+        alias: 'LSB\ContractorBundle\Factory\GroupFactory'
+
+    LSB\ContractorBundle\Factory\GroupFactoryInterface: '@LSB\ContractorBundle\Factory\GroupFactory'
+
+
+
     LSB\ContractorBundle\Factory\ContractorGroupFactory:
         arguments:
             - '%lsb_contractor.config.resources.contractor_group.class.entity%'
@@ -18,17 +29,6 @@ services:
         alias: 'LSB\ContractorBundle\Factory\ContractorGroupFactory'
 
     LSB\ContractorBundle\Factory\ContractorGroupFactoryInterface: '@LSB\ContractorBundle\Factory\ContractorGroupFactory'
-
-
-
-    LSB\ContractorBundle\Factory\ContractorGroupRelationFactory:
-        arguments:
-            - '%lsb_contractor.config.resources.contractor_group_relation.class.entity%'
-
-    lsb_contractor_factory_contractor_group_relation:
-        alias: 'LSB\ContractorBundle\Factory\ContractorGroupRelationFactory'
-
-    LSB\ContractorBundle\Factory\ContractorGroupRelationFactoryInterface: '@LSB\ContractorBundle\Factory\ContractorGroupRelationFactory'
 
 
 

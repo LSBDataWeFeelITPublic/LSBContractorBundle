@@ -6,10 +6,10 @@ namespace LSB\ContractorBundle\Factory;
 use LSB\UtilityBundle\Factory\FactoryInterface;
 
 /**
- * Interface ContractorGroupRelationFactoryInterface
+ * Interface GroupFactoryInterface
  * @package LSB\ContractorBundle\Factory
  */
-interface ContractorGroupRelationFactoryInterface extends FactoryInterface
+interface GroupFactoryInterface extends FactoryInterface
 {
 
 }

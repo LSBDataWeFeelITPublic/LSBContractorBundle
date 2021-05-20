@@ -3,12 +3,12 @@ services:
         arguments:
             - '@lsb_utility_object_manager'
 
-    LSB\ContractorBundle\Manager\ContractorGroupManager:
+    LSB\ContractorBundle\Manager\GroupManager:
         arguments:
             - '@lsb_utility_object_manager'
 
 
-    LSB\ContractorBundle\Manager\ContractorGroupRelationManager:
+    LSB\ContractorBundle\Manager\ContractorGroupManager:
         arguments:
             - '@lsb_utility_object_manager'
 

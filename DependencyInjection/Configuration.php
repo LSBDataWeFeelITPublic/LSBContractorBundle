@@ -6,27 +6,27 @@ namespace LSB\ContractorBundle\DependencyInjection;
 use LSB\ContractorBundle\Entity\ContactPerson;
 use LSB\ContractorBundle\Entity\ContactPersonInterface;
 use LSB\ContractorBundle\Entity\Contractor;
+use LSB\ContractorBundle\Entity\Group;
+use LSB\ContractorBundle\Entity\GroupInterface;
 use LSB\ContractorBundle\Entity\ContractorGroup;
 use LSB\ContractorBundle\Entity\ContractorGroupInterface;
-use LSB\ContractorBundle\Entity\ContractorGroupRelation;
-use LSB\ContractorBundle\Entity\ContractorGroupRelationInterface;
 use LSB\ContractorBundle\Entity\ContractorInterface;
 use LSB\ContractorBundle\Factory\ContactPersonFactory;
 use LSB\ContractorBundle\Factory\ContractorFactory;
+use LSB\ContractorBundle\Factory\GroupFactory;
 use LSB\ContractorBundle\Factory\ContractorGroupFactory;
-use LSB\ContractorBundle\Factory\ContractorGroupRelationFactory;
 use LSB\ContractorBundle\Form\ContactPersonType;
-use LSB\ContractorBundle\Form\ContractorGroupRelationType;
 use LSB\ContractorBundle\Form\ContractorGroupType;
+use LSB\ContractorBundle\Form\GroupType;
 use LSB\ContractorBundle\Form\ContractorType;
 use LSB\ContractorBundle\LSBContractorBundle;
 use LSB\ContractorBundle\Manager\ContactPersonManager;
+use LSB\ContractorBundle\Manager\GroupManager;
 use LSB\ContractorBundle\Manager\ContractorGroupManager;
-use LSB\ContractorBundle\Manager\ContractorGroupRelationManager;
 use LSB\ContractorBundle\Manager\ContractorManager;
 use LSB\ContractorBundle\Repository\ContactPersonRepository;
-use LSB\ContractorBundle\Repository\ContractorGroupRelationRepository;
 use LSB\ContractorBundle\Repository\ContractorGroupRepository;
+use LSB\ContractorBundle\Repository\GroupRepository;
 use LSB\ContractorBundle\Repository\ContractorRepository;
 use LSB\UtilityBundle\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -65,6 +65,16 @@ class Configuration implements ConfigurationInterface
             )
             ->end()
             ->resourceNode(
+                'group',
+                Group::class,
+                GroupInterface::class,
+                GroupFactory::class,
+                GroupRepository::class,
+                GroupManager::class,
+                GroupType::class
+            )
+            ->end()
+            ->resourceNode(
                 'contractor_group',
                 ContractorGroup::class,
                 ContractorGroupInterface::class,
@@ -72,16 +82,6 @@ class Configuration implements ConfigurationInterface
                 ContractorGroupRepository::class,
                 ContractorGroupManager::class,
                 ContractorGroupType::class
-            )
-            ->end()
-            ->resourceNode(
-                'contractor_group_relation',
-                ContractorGroupRelation::class,
-                ContractorGroupRelationInterface::class,
-                ContractorGroupRelationFactory::class,
-                ContractorGroupRelationRepository::class,
-                ContractorGroupRelationManager::class,
-                ContractorGroupRelationType::class
             )
             ->end()
             ->resourceNode(

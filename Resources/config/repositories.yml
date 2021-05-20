@@ -7,18 +7,18 @@ services:
     LSB\ContractorBundle\Repository\ContractorRepositoryInterface: '@LSB\ContractorBundle\Repository\ContractorRepository'
 
 
+    LSB\ContractorBundle\Repository\GroupRepository:
+        arguments:
+            - '@doctrine'
+
+    LSB\ContractorBundle\Repository\GroupRepositoryInterface: '@LSB\ContractorBundle\Repository\GroupRepository'
+
+
     LSB\ContractorBundle\Repository\ContractorGroupRepository:
         arguments:
             - '@doctrine'
 
     LSB\ContractorBundle\Repository\ContractorGroupRepositoryInterface: '@LSB\ContractorBundle\Repository\ContractorGroupRepository'
-
-
-    LSB\ContractorBundle\Repository\ContractorGroupRelationRepository:
-        arguments:
-            - '@doctrine'
-
-    LSB\ContractorBundle\Repository\ContractorGroupRelationRepositoryInterface: '@LSB\ContractorBundle\Repository\ContractorGroupRelationRepository'
 
 
     LSB\ContractorBundle\Repository\ContactPersonRepository:
