@@ -38,6 +38,10 @@
     {
       "type": "git",
       "url": "https://github.com/LSBDataWeFeelITPublic/LSBUtilityBundle.git"
-    }
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/LSBDataWeFeelITPublic/LSBLocaleBundle.git"
+    },
   ]
 }
