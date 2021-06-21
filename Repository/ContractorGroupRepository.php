@@ -5,14 +5,13 @@ namespace LSB\ContractorBundle\Repository;
 use Doctrine\Persistence\ManagerRegistry;
 use LSB\ContractorBundle\Entity\ContractorGroup;
 use LSB\UtilityBundle\Repository\BaseRepository;
-use LSB\UtilityBundle\Repository\PaginationInterface;
 use LSB\UtilityBundle\Repository\PaginationRepositoryTrait;
 
 /**
  * Class ContractorGroupRepository
  * @package LSB\ContractorBundle\Repository
  */
-class ContractorGroupRepository extends BaseRepository implements ContractorGroupRepositoryInterface, PaginationInterface
+class ContractorGroupRepository extends BaseRepository implements ContractorGroupRepositoryInterface
 {
     use PaginationRepositoryTrait;
 
