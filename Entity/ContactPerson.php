@@ -77,11 +77,11 @@ class ContactPerson implements ContactPersonInterface
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function __toString(): ?string
+    public function __toString(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
     /**
