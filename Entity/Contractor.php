@@ -31,24 +31,24 @@ class Contractor implements ContractorInterface
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    protected ?string $number;
+    protected ?string $number = null;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=500, nullable=true)
      */
-    protected ?string $name;
+    protected ?string $name = null;
 
     /**
      * @var string|null
      * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected ?string $shortName;
+    protected ?string $shortName = null;
 
     /**
      * @ORM\Embedded(class="LSB\ContractorBundle\Entity\Address", columnPrefix="contractor_")
      */
-    protected ?Address $address;
+    protected ?Address $address = null;
 
     // TODO create property for Country (probably from LocaleBundle?)
 
@@ -56,14 +56,14 @@ class Contractor implements ContractorInterface
      * @var string|null
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    protected ?string $taxNumber;
+    protected ?string $taxNumber = null;
 
     /**
      * @var ContractorInterface|null
      * @ORM\ManyToOne(targetEntity="LSB\ContractorBundle\Entity\ContractorInterface", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", nullable=true)
      */
-    protected ?ContractorInterface $parent;
+    protected ?ContractorInterface $parent = null;
 
     /**
      * @var Collection|ContractorInterface[]
@@ -99,7 +99,7 @@ class Contractor implements ContractorInterface
      * @var float|null
      * @ORM\Column(type="decimal", precision=18, scale=2, nullable=true)
      */
-    protected ?float $discount;
+    protected ?float $discount = null;
 
     /**
      * @var Collection|ContactPersonInterface[]
